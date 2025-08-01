@@ -202,13 +202,13 @@ function App() {
 
             
 
-            <h1 className="text-xl sm:text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
-              <span className="block mb-2">Publish Your</span>
+            <h1 className="text-lg sm:text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
+              {/* <span className="block mb-2">Publish AI Systems on</span> */}
               <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]">
-                AI Systems
+                AI Gateway
               </span>
               <span className="block text-3xl sm:text-4xl lg:text-5xl mt-4 text-gray-300 font-light">
-                Securely & Confidently
+                Publish your AI Systems
               </span>
             </h1>
 
@@ -217,7 +217,7 @@ function App() {
             </p>
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 mb-8 animate-bounceIn backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-cyan-400 mr-2 animate-twinkle" />
-              <span className="text-cyan-300 text-sm font-medium">🚀 Coming Soon - AI Gateway Beta</span>
+              <span className="text-cyan-300 text-xl font-medium">🚀 Coming Soon - AI Gateway Beta</span>
             </div>
 
             {/* Pricing Plans */}
@@ -314,7 +314,7 @@ function App() {
                         value={aiSystemsCount}
                         onChange={(value: number | string) => setAiSystemsCount(value)}
                         placeholder="How many AI systems will you publish?"
-                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center appearance-none"
+                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 transition-all duration-300 text-center appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 hover:bg-transparent"
                         min={1}
                         styles={{
                           input: {
@@ -377,7 +377,7 @@ function App() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 relative">
+      <section id="features" className="py-10 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent"/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeInUp">
