@@ -314,7 +314,7 @@ function App() {
                         value={aiSystemsCount}
                         onChange={(value: number | string) => setAiSystemsCount(value)}
                         placeholder="How many AI systems will you publish?"
-                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 transition-all duration-300 text-center appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 hover:bg-transparent"
+                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 transition-all duration-300 text-center appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 hover:bg-transparent [&_.mantine-NumberInput-control]:hover:bg-transparent"
                         min={1}
                         styles={{
                           input: {
