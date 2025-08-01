@@ -215,12 +215,12 @@ function App() {
                     key={plan.id}
                     onClick={() => setSelectedPlan(plan.id)}
                     className={`relative cursor-pointer transition-all duration-500 transform ${selectedPlan === plan.id
-                        ? 'ring-2 ring-cyan-400 shadow-2xl shadow-cyan-500/40 scale-105 z-10'
+                        ? 'shadow-2xl shadow-cyan-500/40 scale-105 z-10'
                         : 'hover:shadow-xl hover:scale-102'
                       }`}
                   >
                     {selectedPlan === plan.id && (
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 animate-pulse"></div>
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-800 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 animate-pulse"></div>
                     )}
                     <div className={`relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full ${selectedPlan === plan.id ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20' : ''
                       }`}>
@@ -235,14 +235,6 @@ function App() {
                         />
                       </div>
                       <h4 className={`text-2xl font-bold mb-2 ${selectedPlan === plan.id ? 'text-cyan-300' : 'text-white'} transition-colors duration-300`}>{plan.name}</h4>
-                      <div className="mb-4">
-                        <span className={`text-3xl font-bold ${selectedPlan === plan.id ? 'bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]' : 'text-white'}`}>
-                          {plan.price}
-                        </span>
-                        <span className={`text-sm ml-1 ${selectedPlan === plan.id ? 'text-cyan-300' : 'text-gray-400'}`}>
-                          {plan.period}
-                        </span>
-                      </div>
                       <p className="text-gray-400 mb-6">{plan.description}</p>
                       <ul className="space-y-3">
                         {plan.features.map((feature, index) => (
@@ -256,11 +248,6 @@ function App() {
                           </li>
                         ))}
                       </ul>
-                      {selectedPlan === plan.id && (
-                        <div className="absolute bottom-4 right-4">
-                          <div className="w-12 h-12 bg-cyan-400/20 rounded-full flex items-center justify-center animate-ping-slow opacity-50"></div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 ))}
@@ -401,7 +388,6 @@ function App() {
                 <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-cyan-300 transition-colors">{feature.title}</h3>
                 <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors text-left">{feature.description}</p>
 
-                {/* Hover Effect Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
