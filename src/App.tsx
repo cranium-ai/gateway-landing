@@ -168,8 +168,22 @@ function App() {
         <div className="absolute top-2/3 right-1/4 w-5 h-5 bg-pink-400/30 rotate-12 animate-twinkle animation-delay-900"></div>
       </div>
 
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-6 lg:px-8 bg-black/80 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-7xl mx-auto flex justify-start">
+          <a 
+            href="https://cranium.ai" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transition-transform hover:scale-105"
+          >
+            <img src="/cranium_logo.svg" alt="Cranium AI" className="h-10" />
+          </a>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-10">
+      <section className="relative overflow-hidden py-10 pt-24">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
             {/* Floating Icons */}
@@ -186,10 +200,7 @@ function App() {
               <Cpu className="h-5 w-5 text-pink-400" />
             </div>
 
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 mb-8 animate-bounceIn backdrop-blur-sm">
-              <Sparkles className="h-4 w-4 text-cyan-400 mr-2 animate-twinkle" />
-              <span className="text-cyan-300 text-sm font-medium">🚀 Coming Soon - AI Gateway Beta</span>
-            </div>
+            
 
             <h1 className="text-xl sm:text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
               <span className="block mb-2">Publish Your</span>
@@ -204,6 +215,10 @@ function App() {
             <p className="text-xl sm:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed animate-fadeInUp animation-delay-300">
             The first AI security focused enterprise marketplace for AI systems. Showcase your product, connect with potential customers, and accelerate your AI sales cycle with Cranium's enterprise level AI security 
             </p>
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 mb-8 animate-bounceIn backdrop-blur-sm">
+              <Sparkles className="h-4 w-4 text-cyan-400 mr-2 animate-twinkle" />
+              <span className="text-cyan-300 text-sm font-medium">🚀 Coming Soon - AI Gateway Beta</span>
+            </div>
 
             {/* Pricing Plans */}
             <div className="max-w-6xl mx-auto mb-12 animate-fadeInUp animation-delay-600">
