@@ -14,6 +14,7 @@ import {
   Zap
 } from 'lucide-react';
 import React, { useState } from 'react';
+import { BentoCard, BentoGrid } from './components/magicui/bento-grid';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ function App() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    
+
     setIsLoading(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -78,14 +79,14 @@ function App() {
     },
     {
       id: 'standard' as const,
-      name: 'Standard',
+      name: 'Core',
       price: '$99',
       period: 'per month',
       description: 'Ideal for growing companies and teams',
       features: [
         'Advanced security & compliance for a monthly fee',
         'AI Assisted Compliance Risk Assessments',
-        'Everything in free plan'
+        'Everything in free'
       ],
       color: 'from-cyan-400 to-blue-600',
       popular: false
@@ -99,7 +100,7 @@ function App() {
       features: [
         'Unlimited AI systems',
         'Advanced AI PenTesting and Remediations',
-        'Everything in standard'
+        'Everything in core'
       ],
       color: 'from-purple-400 to-pink-600',
       popular: false
@@ -109,20 +110,39 @@ function App() {
   const faqs = [
     {
       question: "What types of AI systems can be published?",
-      answer: "AI Gateway supports all types of AI systems including machine learning models, natural language processing tools, computer vision applications, and custom AI workflows. Our platform is model-agnostic and supports popular frameworks like TensorFlow, PyTorch, and Hugging Face."
+      answer: "AI Gateway supports all types of AI systems including machine learning models, natural language processing tools, computer vision applications, LLM applications,and custom AI workflows."
     },
     {
       question: "How does the security and compliance work?",
-      answer: "We provide enterprise-grade security with SOC 2 Type II compliance, GDPR compliance, and industry-specific certifications. All data is encrypted in transit and at rest, with comprehensive audit logs and access controls."
+      answer: "We provide enterprise-grade security and guardrails to ensure your AI systems are secure and compliant. We also provide a comprehensive audit trail of all actions taken on your AI systems. We support the EU AI Act, NIST Risk Management Framework, ISO42001, and more to document your compliance posture."
     },
     {
       question: "What's included in the beta program?",
       answer: "Beta participants get early access to AI Gateway, dedicated onboarding support, direct feedback channels with our product team, and preferential pricing when we launch publicly."
     },
+  ];
+
+  const appFeatures = [
     {
-      question: "When will AI Gateway be available?",
-      answer: "We're launching the private beta in Q2 2025, with general availability planned for Q3 2025. Waitlist members will be notified first and get priority access."
-    }
+      name: 'AI Gateway Search',
+      description: 'Find and discover AI systems with our powerful search and filtering capabilities.',
+      background: <img src='/screenshots/search.png' />,
+      Icon: Globe,
+      href: '/',
+      cta: 'Learn More',
+      // Make the first box span the first column
+      className: "col-span-1",
+    },
+    {
+      name: 'AI System Details',
+      description: 'Comprehensive information about each AI system with security and compliance details.',
+      background: <img src='/screenshots/details.png' />,
+      Icon: Shield,
+      href: '/',
+      cta: 'Learn More',
+      // Make the second box span the second column, so they are side by side
+      className: "col-span-1",
+    },
   ];
 
   return (
@@ -131,12 +151,12 @@ function App() {
       <div className="absolute inset-0">
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse"></div>
-        
+
         {/* Floating Orbs */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-float animation-delay-2000"></div>
         <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-full blur-3xl animate-float animation-delay-4000"></div>
-        
+
         {/* Geometric Shapes */}
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-cyan-400/30 rotate-45 animate-twinkle"></div>
         <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-purple-400/30 rounded-full animate-twinkle animation-delay-300"></div>
@@ -161,12 +181,12 @@ function App() {
             <div className="absolute top-5 right-1/6 opacity-20 animate-float animation-delay-900">
               <Cpu className="h-5 w-5 text-pink-400" />
             </div>
-            
+
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 mb-8 animate-bounceIn backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-cyan-400 mr-2 animate-twinkle" />
               <span className="text-cyan-300 text-sm font-medium">🚀 Coming Soon - AI Gateway Beta</span>
             </div>
-            
+
             <h1 className="text-xl sm:text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
               <span className="block mb-2">Publish Your</span>
               <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]">
@@ -176,9 +196,9 @@ function App() {
                 Securely & Confidently
               </span>
             </h1>
-            
+
             <p className="text-xl sm:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed animate-fadeInUp animation-delay-300">
-              The first enterprise marketplace for AI systems. Showcase your models, manage client access, 
+              The first enterprise marketplace for AI systems. Showcase your models, manage client access,
               and accelerate your AI sales cycle with bank-level security and compliance.
             </p>
 
@@ -190,15 +210,13 @@ function App() {
                   <div
                     key={plan.id}
                     onClick={() => setSelectedPlan(plan.id)}
-                    className={`relative cursor-pointer transition-all duration-300 transform hover:scale-105 ${
-                      selectedPlan === plan.id
-                        ? 'ring-2 ring-cyan-400 shadow-2xl shadow-cyan-500/25 animate-pulse'
+                    className={`relative cursor-pointer transition-all duration-300 transform hover:scale-105 ${selectedPlan === plan.id
+                        ? 'ring-2 ring-cyan-400 shadow-2xl shadow-cyan-500/25 '
                         : 'hover:shadow-xl'
-                    }`}
+                      }`}
                   >
-                    <div className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full ${
-                      selectedPlan === plan.id ? 'bg-gradient-to-br from-cyan-500/10 to-blue-600/10' : ''
-                    }`}>
+                    <div className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full ${selectedPlan === plan.id ? 'bg-gradient-to-br from-cyan-500/10 to-blue-600/10' : ''
+                      }`}>
                       <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center mb-6 mx-auto animate-float`}>
                         <img
                           src="/cranium_icon.png"
@@ -264,15 +282,14 @@ function App() {
                 </div>
               )}
             </div>
-
           </div>
         </div>
       </section>
 
       {/* Features Section */}
       <section id="features" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent"/>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 relative">
               Built for Enterprise AI Sales
@@ -283,29 +300,34 @@ function App() {
             </p>
           </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group animate-fadeInUp`}
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
-                  <div className={`bg-gradient-to-r ${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 animate-float`}>
-                    <feature.icon className="h-8 w-8 text-white group-hover:animate-pulse" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-cyan-300 transition-colors">{feature.title}</h3>
-                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors text-left">{feature.description}</p>
-                  
-                  {/* Hover Effect Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group animate-fadeInUp`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className={`bg-gradient-to-r ${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 animate-float`}>
+                  <feature.icon className="h-8 w-8 text-white group-hover:animate-pulse" />
                 </div>
-              ))}
-            </div>
+                <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-cyan-300 transition-colors">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors text-left">{feature.description}</p>
+
+                {/* Hover Effect Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            ))}
+          </div>
+            <BentoGrid className="grid-cols-2 gap-6 mt-12">
+            {appFeatures.map((feature) => (
+              <BentoCard key={feature.name} {...feature} />
+            ))}
+          </BentoGrid>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 relative">
+      <section id="faq" className="pb-20 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 relative">
@@ -319,7 +341,7 @@ function App() {
 
           <div className="space-y-6">
             {faqs.map((faq, index) => (
-              <div 
+              <div
                 key={index}
                 className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300 animate-fadeInUp`}
                 style={{ animationDelay: `${index * 100}ms` }}
@@ -329,10 +351,9 @@ function App() {
                   onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                 >
                   <span className="text-lg font-semibold text-white group-hover:text-cyan-300 transition-colors pr-4">{faq.question}</span>
-                  <ChevronDown 
-                    className={`h-5 w-5 text-gray-400 group-hover:text-cyan-400 transition-all duration-300 flex-shrink-0 ${
-                      expandedFaq === index ? 'rotate-180' : ''
-                    }`} 
+                  <ChevronDown
+                    className={`h-5 w-5 text-gray-400 group-hover:text-cyan-400 transition-all duration-300 flex-shrink-0 ${expandedFaq === index ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
                 {expandedFaq === index && (
@@ -357,16 +378,16 @@ function App() {
           <p className="text-xl text-gray-400 mb-12 animate-fadeInUp animation-delay-200">
             Join the waitlist and be among the first to experience the future of AI marketplace.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fadeInUp animation-delay-400">
-            <button 
+            <button
               onClick={scrollToTop}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105 flex items-center shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <Mail className="mr-2 h-5 w-5 relative z-10" />
               <span className="relative z-10">
-              Join the Waitlist
+                Join the Waitlist
               </span>
             </button>
           </div>
@@ -379,7 +400,7 @@ function App() {
           <div className="flex flex-col md:flex-row items-center justify-between animate-fadeInUp">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
             </div>
-            
+
             <div className="text-gray-500 text-center md:text-right">
               <p>&copy; 2025 Cranium AI. All rights reserved.</p>
             </div>
