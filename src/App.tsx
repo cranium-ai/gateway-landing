@@ -11,13 +11,17 @@ import {
   Rocket,
   Shield,
   Sparkles,
-  Zap
+  Zap,
+  Building
 } from 'lucide-react';
 import React, { useState } from 'react';
 import { BentoCard, BentoGrid } from './components/magicui/bento-grid';
+import { NumberInput } from '@mantine/core';
 
 function App() {
   const [email, setEmail] = useState('');
+  const [aiSystemsCount, setAiSystemsCount] = useState<number | ''>('');
+  const [companyName, setCompanyName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -247,14 +251,71 @@ function App() {
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="flex-1">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
-                      className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center"
-                      required
-                    />
+                    <div className="relative">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email address"
+                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center"
+                        required
+                      />
+                      <label className="absolute -top-3 left-6 px-2 bg-black text-cyan-400 text-xs font-medium">
+                        Email
+                      </label>
+                      <div className="absolute inset-y-0 right-6 flex items-center pointer-events-none">
+                        <Mail className="h-5 w-5 text-cyan-400/50" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        placeholder="Your company name"
+                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center appearance-none"
+                      />
+                      <label className="absolute -top-3 left-6 px-2 bg-black text-cyan-400 text-xs font-medium">
+                        Company
+                      </label>
+                      <div className="absolute inset-y-0 right-6 flex items-center pointer-events-none">
+                        <Building className="h-5 w-5 text-cyan-400/50" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="relative">
+                      <NumberInput
+                        variant="unstyled"
+                        value={aiSystemsCount}
+                        onChange={(value) => setAiSystemsCount(value)}
+                        placeholder="How many AI systems will you publish?"
+                        className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center appearance-none"
+                        min={1}
+                        styles={{
+                          input: {
+                            backgroundColor: 'transparent',
+                            color: 'white',
+                            textAlign: 'center',
+                            '&::placeholder': {
+                              color: 'rgba(156, 163, 175, 1)'
+                            }
+                          },
+                          control: {
+                            color: 'rgba(103, 232, 249, 0.5)',
+                            border: 'none',
+                            '&:hover': {
+                              backgroundColor: 'rgba(255, 255, 255, 0.05)'
+                            }
+                          }
+                        }}
+                      />
+                      <label className="absolute -top-3 left-6 px-2 bg-black text-cyan-400 text-xs font-medium">
+                        Number of AI Systems
+                      </label>
+                    </div>
                   </div>
                   <button
                     type="submit"
@@ -279,6 +340,12 @@ function App() {
                   <h3 className="text-xl font-semibold text-white mb-2">You're on the list!</h3>
                   <p className="text-gray-300 mb-2">We'll notify you as soon as AI Gateway beta is available.</p>
                   <p className="text-emerald-400 font-semibold">Selected Plan: {pricingPlans.find(p => p.id === selectedPlan)?.name}</p>
+                  {companyName && (
+                    <p className="text-gray-300 mt-2">Company: {companyName}</p>
+                  )}
+                  {aiSystemsCount && (
+                    <p className="text-gray-300 mt-2">AI Systems to Publish: {aiSystemsCount}</p>
+                  )}
                 </div>
               )}
             </div>
