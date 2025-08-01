@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
-import { 
-  Shield, 
-  Zap, 
-  Users, 
-  CheckCircle, 
-  ArrowRight, 
-  Star,
-  Lock,
-  Globe,
-  Brain,
-  Mail,
+import {
+  ArrowRight,
+  CheckCircle,
   ChevronDown,
-  Menu,
-  X,
   Code,
-  Database,
-  Network,
   Cpu,
-  Eye,
-  Layers,
-  Sparkles,
+  Database,
+  Globe,
+  Mail,
+  Network,
   Rocket,
-  Target
+  Shield,
+  Sparkles,
+  Zap
 } from 'lucide-react';
+import React, { useState } from 'react';
 
 function App() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'standard' | 'enterprise'>('standard');
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,20 +44,14 @@ function App() {
     {
       icon: Shield,
       title: "Enterprise Security",
-      description: "Bank-level encryption and compliance standards ensure your AI systems are protected and audit-ready.",
+      description: "Enterprise level security and compliance standards ensure your AI systems are protected and audit-ready.",
       color: "from-emerald-400 to-teal-600"
     },
     {
       icon: Zap,
       title: "Instant Publishing",
-      description: "Deploy your AI models to a secure marketplace in minutes, not months. One-click publishing with automated documentation.",
+      description: "Publish your AI models to a secure marketplace in minutes, not months. One-click publishing with automated documentation.",
       color: "from-yellow-400 to-orange-600"
-    },
-    {
-      icon: Users,
-      title: "Client Management",
-      description: "Comprehensive dashboard to manage client access, monitor usage, and track performance metrics in real-time.",
-      color: "from-blue-400 to-indigo-600"
     },
     {
       icon: Globe,
@@ -76,13 +67,11 @@ function App() {
       name: 'Free',
       price: '$0',
       period: 'forever',
-      description: 'Perfect for startups and individual developers',
+      description: 'For startups and individual developers',
       features: [
-        'Up to 3 AI models',
-        'Basic security features',
-        'Community support',
-        'Standard documentation',
-        '1GB storage'
+        'Free forever',
+        'Basic security and compliance features',
+        'Generate an AI Bill of Materials'
       ],
       color: 'from-gray-400 to-gray-600',
       popular: false
@@ -94,15 +83,12 @@ function App() {
       period: 'per month',
       description: 'Ideal for growing companies and teams',
       features: [
-        'Up to 25 AI models',
-        'Advanced security & compliance',
-        'Priority support',
-        'Custom documentation',
-        '100GB storage',
-        'Analytics dashboard'
+        'Advanced security & compliance for a monthly fee',
+        'AI Assisted Compliance Risk Assessments',
+        'Everything in free plan'
       ],
       color: 'from-cyan-400 to-blue-600',
-      popular: true
+      popular: false
     },
     {
       id: 'enterprise' as const,
@@ -111,40 +97,12 @@ function App() {
       period: 'pricing',
       description: 'For large organizations with specific needs',
       features: [
-        'Unlimited AI models',
-        'Enterprise-grade security',
-        'Dedicated support',
-        'White-label options',
-        'Unlimited storage',
-        'Custom integrations',
-        'SLA guarantees'
+        'Unlimited AI systems',
+        'Advanced AI PenTesting and Remediations',
+        'Everything in standard'
       ],
       color: 'from-purple-400 to-pink-600',
       popular: false
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      role: "CTO, TechFlow",
-      content: "We've been waiting for something like this. The ability to securely showcase our AI capabilities to enterprise clients is game-changing.",
-      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-      company: "TechFlow"
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "AI Director, InnovateLabs",
-      content: "Finally, a platform that understands the enterprise sales cycle for AI products. This will accelerate our client acquisition significantly.",
-      avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-      company: "InnovateLabs"
-    },
-    {
-      name: "Dr. Amanda Foster",
-      role: "Head of AI Strategy, DataCorp",
-      content: "The security features and compliance tools are exactly what we need to confidently present our AI systems to Fortune 500 clients.",
-      avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-      company: "DataCorp"
     }
   ];
 
@@ -186,68 +144,8 @@ function App() {
         <div className="absolute top-2/3 right-1/4 w-5 h-5 bg-pink-400/30 rotate-12 animate-twinkle animation-delay-900"></div>
       </div>
 
-      {/* Navigation */}
-      <nav className="relative z-50 bg-black/40 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3 animate-fadeInLeft">
-              <div className="relative">
-                <Brain className="h-10 w-10 text-cyan-400 animate-float" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-pulse"></div>
-              </div>
-              <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Cranium.ai</span>
-                <div className="text-xs text-cyan-400 font-medium">AI Gateway</div>
-              </div>
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8 animate-fadeInRight">
-              <a href="#features" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 relative group">
-                Features
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a href="#testimonials" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 relative group">
-                Testimonials
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a href="#faq" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 relative group">
-                FAQ
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 relative overflow-hidden group">
-                <span className="relative z-10">Join Waitlist</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden text-white"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-white/10 animate-slideDown">
-              <div className="flex flex-col space-y-4">
-                <a href="#features" className="text-gray-400 hover:text-cyan-400 transition-colors">Features</a>
-                <a href="#testimonials" className="text-gray-400 hover:text-cyan-400 transition-colors">Testimonials</a>
-                <a href="#faq" className="text-gray-400 hover:text-cyan-400 transition-colors">FAQ</a>
-                <button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-full font-semibold w-full">
-                  Join Waitlist
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
+      <section className="relative overflow-hidden py-10">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
             {/* Floating Icons */}
@@ -269,7 +167,7 @@ function App() {
               <span className="text-cyan-300 text-sm font-medium">🚀 Coming Soon - AI Gateway Beta</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
+            <h1 className="text-xl sm:text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
               <span className="block mb-2">Publish Your</span>
               <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]">
                 AI Systems
@@ -279,7 +177,7 @@ function App() {
               </span>
             </h1>
             
-            <p className="text-xl sm:text-2xl text-gray-400 mb-16 max-w-4xl mx-auto leading-relaxed animate-fadeInUp animation-delay-300">
+            <p className="text-xl sm:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed animate-fadeInUp animation-delay-300">
               The first enterprise marketplace for AI systems. Showcase your models, manage client access, 
               and accelerate your AI sales cycle with bank-level security and compliance.
             </p>
@@ -298,30 +196,25 @@ function App() {
                         : 'hover:shadow-xl'
                     }`}
                   >
-                    {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                        <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold animate-bounce">
-                          Most Popular
-                        </div>
-                      </div>
-                    )}
                     <div className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full ${
                       selectedPlan === plan.id ? 'bg-gradient-to-br from-cyan-500/10 to-blue-600/10' : ''
                     }`}>
                       <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center mb-6 mx-auto animate-float`}>
-                        <Target className="h-8 w-8 text-white" />
+                        <img
+                          src="/cranium_icon.png"
+                          alt="Cranium Icon"
+                          className="h-12 w-8"
+                        />
                       </div>
                       <h4 className="text-2xl font-bold text-white mb-2">{plan.name}</h4>
                       <div className="mb-4">
-                        <span className="text-4xl font-bold text-white">{plan.price}</span>
-                        <span className="text-gray-400 ml-2">/{plan.period}</span>
                       </div>
                       <p className="text-gray-400 mb-6">{plan.description}</p>
                       <ul className="space-y-3">
                         {plan.features.map((feature, index) => (
                           <li key={index} className="flex items-center text-gray-300">
                             <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
-                            <span className="text-sm">{feature}</span>
+                            <span className="text-sm text-left">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -372,12 +265,6 @@ function App() {
               )}
             </div>
 
-            <p className="text-gray-500 mt-8 animate-fadeInUp animation-delay-2000">
-              <span className="inline-flex items-center">
-                <Eye className="h-4 w-4 mr-2 text-cyan-400" />
-                Join 2,000+ AI companies already on the waitlist
-              </span>
-            </p>
           </div>
         </div>
       </section>
@@ -396,102 +283,24 @@ function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group animate-fadeInUp`}
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <div className={`bg-gradient-to-r ${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 animate-float`}>
-                  <feature.icon className="h-8 w-8 text-white group-hover:animate-pulse" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-cyan-300 transition-colors">{feature.title}</h3>
-                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">{feature.description}</p>
-                
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-2 h-2 bg-cyan-400/30 rounded-full animate-twinkle"></div>
-          <div className="absolute top-20 right-20 w-3 h-3 bg-purple-400/30 rounded-full animate-twinkle animation-delay-300"></div>
-          <div className="absolute bottom-20 left-1/3 w-2 h-2 bg-emerald-400/30 rounded-full animate-twinkle animation-delay-600"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-gradient-to-br from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 rounded-3xl p-8 hover:scale-105 transition-all duration-300 animate-fadeInUp backdrop-blur-xl">
-              <div className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent mb-2 animate-countUp">10x</div>
-              <div className="text-gray-400">Faster Client Onboarding</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-500/10 to-pink-600/10 border border-purple-500/20 rounded-3xl p-8 hover:scale-105 transition-all duration-300 animate-fadeInUp animation-delay-200 backdrop-blur-xl">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent mb-2 animate-countUp">99.9%</div>
-              <div className="text-gray-400">Uptime SLA</div>
-            </div>
-            <div className="bg-gradient-to-br from-emerald-500/10 to-teal-600/10 border border-emerald-500/20 rounded-3xl p-8 hover:scale-105 transition-all duration-300 animate-fadeInUp animation-delay-400 backdrop-blur-xl">
-              <div className="text-5xl font-bold bg-gradient-to-r from-emerald-400 to-teal-600 bg-clip-text text-transparent mb-2 animate-countUp">SOC 2</div>
-              <div className="text-gray-400">Type II Compliant</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 relative">
-              What AI Leaders Are Saying
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full"></div>
-            </h2>
-            <p className="text-xl text-gray-400">
-              Early feedback from industry experts and AI company leaders.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index}
-                className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/10 hover:scale-105 hover:-translate-y-2 transition-all duration-500 animate-fadeInUp relative overflow-hidden group`}
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                {/* Floating Stars */}
-                <div className="absolute top-4 right-4 opacity-20">
-                  <Sparkles className="h-6 w-6 text-yellow-400 animate-twinkle" />
-                </div>
-                
-                <div className="flex items-center mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current animate-twinkle" style={{ animationDelay: `${i * 100}ms` }} />
-                  ))}
-                </div>
-                <p className="text-gray-300 mb-8 leading-relaxed text-lg italic group-hover:text-gray-200 transition-colors">"{testimonial.content}"</p>
-                <div className="flex items-center">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name}
-                    className="w-14 h-14 rounded-full mr-4 ring-2 ring-white/20 group-hover:ring-cyan-400/50 transition-all duration-300"
-                  />
-                  <div>
-                    <div className="text-white font-semibold group-hover:text-cyan-300 transition-colors">{testimonial.name}</div>
-                    <div className="text-gray-400 text-sm">{testimonial.role}</div>
-                    <div className="text-cyan-400 text-xs font-medium mt-1">{testimonial.company}</div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <div 
+                  key={index} 
+                  className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group animate-fadeInUp`}
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
+                  <div className={`bg-gradient-to-r ${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 animate-float`}>
+                    <feature.icon className="h-8 w-8 text-white group-hover:animate-pulse" />
                   </div>
+                  <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-cyan-300 transition-colors">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors text-left">{feature.description}</p>
+                  
+                  {/* Hover Effect Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
         </div>
       </section>
 
@@ -550,45 +359,29 @@ function App() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fadeInUp animation-delay-400">
-            <button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105 flex items-center shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 relative overflow-hidden group">
+            <button 
+              onClick={scrollToTop}
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105 flex items-center shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 relative overflow-hidden group"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <Mail className="mr-2 h-5 w-5 relative z-10" />
               <span className="relative z-10">
               Join the Waitlist
               </span>
             </button>
-            <a 
-              href="mailto:gateway@cranium.ai" 
-              className="text-gray-400 hover:text-cyan-400 transition-all duration-300 flex items-center group"
-            >
-              Questions? Contact us
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/60 border-t border-white/5 py-12 backdrop-blur-xl">
+      <footer className="bg-black/60 border-t border-white/5 py-4 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between animate-fadeInUp">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="relative">
-                <Brain className="h-8 w-8 text-cyan-400 animate-float" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-              </div>
-              <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Cranium.ai</span>
-                <div className="text-xs text-cyan-400 font-medium">AI Gateway</div>
-              </div>
             </div>
             
             <div className="text-gray-500 text-center md:text-right">
               <p>&copy; 2025 Cranium AI. All rights reserved.</p>
-              <p className="mt-2">
-                <a href="#" className="hover:text-cyan-400 transition-colors mr-6">Privacy Policy</a>
-                <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
-              </p>
             </div>
           </div>
         </div>
