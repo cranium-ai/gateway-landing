@@ -20,7 +20,7 @@ import { NumberInput } from '@mantine/core';
 
 function App() {
   const [email, setEmail] = useState('');
-  const [aiSystemsCount, setAiSystemsCount] = useState<number | ''>('');
+  const [aiSystemsCount, setAiSystemsCount] = useState<number | string>('');
   const [companyName, setCompanyName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +60,7 @@ function App() {
     },
     {
       icon: Globe,
-      title: "Global Distribution",
+      title: "Global Reach",
       description: "Reach clients worldwide with our distributed infrastructure and multi-region deployment capabilities.",
       color: "from-purple-400 to-pink-600"
     }
@@ -203,7 +203,7 @@ function App() {
 
             <p className="text-xl sm:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed animate-fadeInUp animation-delay-300">
               The first enterprise marketplace for AI systems. Showcase your models, manage client access,
-              and accelerate your AI sales cycle with bank-level security and compliance.
+              and accelerate your AI sales cycle with enterprise level security and compliance.
             </p>
 
             {/* Pricing Plans */}
@@ -214,32 +214,53 @@ function App() {
                   <div
                     key={plan.id}
                     onClick={() => setSelectedPlan(plan.id)}
-                    className={`relative cursor-pointer transition-all duration-300 transform hover:scale-105 ${selectedPlan === plan.id
-                        ? 'ring-2 ring-cyan-400 shadow-2xl shadow-cyan-500/25 '
-                        : 'hover:shadow-xl'
+                    className={`relative cursor-pointer transition-all duration-500 transform ${selectedPlan === plan.id
+                        ? 'ring-2 ring-cyan-400 shadow-2xl shadow-cyan-500/40 scale-105 z-10'
+                        : 'hover:shadow-xl hover:scale-102'
                       }`}
                   >
-                    <div className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full ${selectedPlan === plan.id ? 'bg-gradient-to-br from-cyan-500/10 to-blue-600/10' : ''
+                    {selectedPlan === plan.id && (
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 animate-pulse"></div>
+                    )}
+                    <div className={`relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full ${selectedPlan === plan.id ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20' : ''
                       }`}>
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center mb-6 mx-auto animate-float`}>
+                      {selectedPlan === plan.id && (
+                        <div className="absolute inset-0 rounded-2xl bg-cyan-400/10 animate-pulse z-[-1]"></div>
+                      )}
+                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center mb-6 mx-auto ${selectedPlan === plan.id ? 'animate-bounce-subtle' : 'animate-float'}`}>
                         <img
                           src="/cranium_icon.png"
                           alt="Cranium Icon"
-                          className="h-12 w-8"
+                          className={`h-12 w-8 ${selectedPlan === plan.id ? 'animate-pulse' : ''}`}
                         />
                       </div>
-                      <h4 className="text-2xl font-bold text-white mb-2">{plan.name}</h4>
+                      <h4 className={`text-2xl font-bold mb-2 ${selectedPlan === plan.id ? 'text-cyan-300' : 'text-white'} transition-colors duration-300`}>{plan.name}</h4>
                       <div className="mb-4">
+                        <span className={`text-3xl font-bold ${selectedPlan === plan.id ? 'bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]' : 'text-white'}`}>
+                          {plan.price}
+                        </span>
+                        <span className={`text-sm ml-1 ${selectedPlan === plan.id ? 'text-cyan-300' : 'text-gray-400'}`}>
+                          {plan.period}
+                        </span>
                       </div>
                       <p className="text-gray-400 mb-6">{plan.description}</p>
                       <ul className="space-y-3">
                         {plan.features.map((feature, index) => (
                           <li key={index} className="flex items-center text-gray-300">
-                            <CheckCircle className="h-5 w-5 text-emerald-400 mr-3 flex-shrink-0" />
-                            <span className="text-sm text-left">{feature}</span>
+                            <CheckCircle className={`h-5 w-5 mr-3 flex-shrink-0 ${
+                              selectedPlan === plan.id ? 'text-cyan-400' : 'text-emerald-400'
+                            } ${selectedPlan === plan.id ? 'animate-pulse' : ''}`} />
+                            <span className={`text-sm text-left ${
+                              selectedPlan === plan.id ? 'text-white' : 'text-gray-300'
+                            } transition-colors duration-300`}>{feature}</span>
                           </li>
                         ))}
                       </ul>
+                      {selectedPlan === plan.id && (
+                        <div className="absolute bottom-4 right-4">
+                          <div className="w-12 h-12 bg-cyan-400/20 rounded-full flex items-center justify-center animate-ping-slow opacity-50"></div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -290,7 +311,7 @@ function App() {
                       <NumberInput
                         variant="unstyled"
                         value={aiSystemsCount}
-                        onChange={(value) => setAiSystemsCount(value)}
+                        onChange={(value: number | string) => setAiSystemsCount(value)}
                         placeholder="How many AI systems will you publish?"
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center appearance-none"
                         min={1}

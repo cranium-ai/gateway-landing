@@ -9,6 +9,19 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		scale: {
+  			'102': '1.02',
+  		},
+  		animation: {
+  			'bounce-subtle': 'bounce-subtle 3s ease-in-out infinite',
+  			'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+  		},
+  		keyframes: {
+  			'bounce-subtle': {
+  				'0%, 100%': { transform: 'translateY(0)' },
+  				'50%': { transform: 'translateY(-5px)' },
+  			},
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
