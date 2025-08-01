@@ -186,21 +186,6 @@ function App() {
       <section className="relative overflow-hidden py-10 pt-24">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
-            {/* Floating Icons */}
-            <div className="absolute -top-10 left-1/4 opacity-20 animate-float">
-              <Code className="h-8 w-8 text-cyan-400" />
-            </div>
-            <div className="absolute -top-5 right-1/4 opacity-20 animate-float animation-delay-300">
-              <Database className="h-6 w-6 text-purple-400" />
-            </div>
-            <div className="absolute top-10 left-1/6 opacity-20 animate-float animation-delay-600">
-              <Network className="h-7 w-7 text-emerald-400" />
-            </div>
-            <div className="absolute top-5 right-1/6 opacity-20 animate-float animation-delay-900">
-              <Cpu className="h-5 w-5 text-pink-400" />
-            </div>
-
-            
 
             <h1 className="text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
               {/* <span className="block mb-2">Publish AI Systems on</span> */}
@@ -372,7 +357,7 @@ function App() {
               )}
             </div>
           </div>
-              <p className="text-gray-400 text-center">Joining our waitlist is free. We'll notify you when we launch your selected plan.</p>
+              <p className="text-gray-400 text-center pt-4">Joining our waitlist is free. We'll notify you when we launch your selected plan.</p>
         </div>
       </section>
 
