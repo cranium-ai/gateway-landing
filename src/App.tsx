@@ -372,6 +372,7 @@ function App() {
               )}
             </div>
           </div>
+              <p className="text-gray-400 text-center">Joining our waitlist is free and commits you to nothing. We'll notify you when we launch your selected plan.</p>
         </div>
       </section>
 
