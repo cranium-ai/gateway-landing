@@ -163,7 +163,6 @@ function App() {
 
         {/* Geometric Shapes */}
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-cyan-400/30 rotate-45 animate-twinkle"></div>
-        <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-purple-400/30 rounded-full animate-twinkle animation-delay-300"></div>
         <div className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-emerald-400/30 animate-twinkle animation-delay-600"></div>
         <div className="absolute top-2/3 right-1/4 w-5 h-5 bg-pink-400/30 rotate-12 animate-twinkle animation-delay-900"></div>
       </div>
@@ -187,7 +186,7 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
 
-            <h1 className="text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
+            <h1 className="text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight animate-fadeInUp">
               {/* <span className="block mb-2">Publish AI Systems on</span> */}
               <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]">
                 AI Gateway
@@ -263,7 +262,6 @@ function App() {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email address"
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center"
                         required
                       />
@@ -281,7 +279,6 @@ function App() {
                         type="text"
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
-                        placeholder="Your company name"
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center appearance-none"
                       />
                       <label className="absolute -top-3 left-6 px-2 bg-black text-cyan-400 text-xs font-medium">
@@ -298,7 +295,6 @@ function App() {
                         variant="unstyled"
                         value={aiSystemsCount}
                         onChange={(value: number | string) => setAiSystemsCount(value)}
-                        placeholder="How many AI systems will you publish?"
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 transition-all duration-300 text-center appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 hover:bg-transparent"
                         min={1}
                         styles={{
@@ -450,7 +446,7 @@ function App() {
             Ready to Transform Your AI Sales?
           </h2>
           <p className="text-xl text-gray-400 mb-12 animate-fadeInUp animation-delay-200">
-            Join the waitlist and be among the first to experience the future of AI marketplace.
+            Join the waitlist and be among the first to experience Cranium's AI Gateway.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fadeInUp animation-delay-400">
@@ -458,7 +454,7 @@ function App() {
               onClick={scrollToTop}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105 flex items-center shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 relative overflow-hidden group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
               <Mail className="mr-2 h-5 w-5 relative z-10" />
               <span className="relative z-10">
                 Join the Waitlist
