@@ -202,8 +202,7 @@ function App() {
             </h1>
 
             <p className="text-xl sm:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed animate-fadeInUp animation-delay-300">
-              The first enterprise marketplace for AI systems. Showcase your models, manage client access,
-              and accelerate your AI sales cycle with enterprise level security and compliance.
+            The first AI security focused enterprise marketplace for AI systems. Showcase your product, connect with potential customers, and accelerate your AI sales cycle with Cranium's enterprise level AI security 
             </p>
 
             {/* Pricing Plans */}
