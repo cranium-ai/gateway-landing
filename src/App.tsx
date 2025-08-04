@@ -17,6 +17,7 @@ import {
 import React, { useState } from 'react';
 import { BentoCard, BentoGrid } from './components/magicui/bento-grid';
 import { NumberInput } from '@mantine/core';
+import { addToWaitlist } from './lib/supabase';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -25,7 +26,8 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  const [selectedPlan, setSelectedPlan] = useState<'free' | 'standard' | 'enterprise'>('standard');
+  const [selectedPlan, setSelectedPlan] = useState<'free' | 'core' | 'enterprise'>('core');
+  const [error, setError] = useState<string | null>(null);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -39,10 +41,31 @@ function App() {
     if (!email) return;
 
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitted(true);
-    setIsLoading(false);
+    setError(null);
+    
+    try {
+      // Convert aiSystemsCount to number if it exists
+      const aiSystemsCountNum = aiSystemsCount ? Number(aiSystemsCount) : undefined;
+      
+      // Submit to Supabase
+      await addToWaitlist({
+        email,
+        company_name: companyName || undefined,
+        ai_systems_count: aiSystemsCountNum,
+        selected_plan: selectedPlan
+      });
+      
+      setIsSubmitted(true);
+    } catch (err: any) {
+      console.log('Error submitting to waitlist:', err);
+      if (err.message.includes("waitlist_email_key")) {
+        setError("You're already on the waitlist! We'll notify you as soon as AI Gateway beta is available.");
+      } else {
+        setError(err.message || 'Failed to submit. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const features = [
@@ -82,7 +105,7 @@ function App() {
       popular: false
     },
     {
-      id: 'standard' as const,
+      id: 'core' as const,
       name: 'Core',
       price: '$99',
       period: 'per month',
@@ -112,6 +135,10 @@ function App() {
   ];
 
   const faqs = [
+    {
+      question: "What is an AI system?",
+      answer: "An AI system is a set of AI components (like models or workflows) working together for a specific goal, with documentation for components, compliance, and security."
+    },
     {
       question: "What types of AI systems can be published?",
       answer: "AI Gateway supports all types of AI systems including machine learning models, natural language processing tools, computer vision applications, LLM applications,and custom AI workflows."
@@ -264,6 +291,7 @@ function App() {
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center"
                         required
+                        placeholder="Enter your email address"
                       />
                       <label className="absolute -top-3 left-6 px-2 bg-black text-cyan-400 text-xs font-medium">
                         Email
@@ -280,6 +308,7 @@ function App() {
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-300 text-center appearance-none"
+                        placeholder="Your company name"
                       />
                       <label className="absolute -top-3 left-6 px-2 bg-black text-cyan-400 text-xs font-medium">
                         Company
@@ -297,6 +326,7 @@ function App() {
                         onChange={(value: number | string) => setAiSystemsCount(value)}
                         className="w-full px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder-gray-500 transition-all duration-300 text-center appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400/50 focus:bg-white/10 hover:bg-transparent"
                         min={1}
+                        placeholder="How many AI systems will you publish?"
                         styles={{
                           input: {
                             backgroundColor: 'transparent',
@@ -320,6 +350,13 @@ function App() {
                       </label>
                     </div>
                   </div>
+                  
+                  {error && (
+                    <div className="bg-blue-500/20 border rounded-2xl p-4 text-center backdrop-blur-xl animate-fadeIn">
+                      <p className="text-gray-400">{error}</p>
+                    </div>
+                  )}
+                  
                   <button
                     type="submit"
                     disabled={isLoading}
