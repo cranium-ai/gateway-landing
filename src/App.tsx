@@ -1,22 +1,18 @@
+import { NumberInput } from '@mantine/core';
 import {
   ArrowRight,
+  Building,
   CheckCircle,
   ChevronDown,
-  Code,
-  Cpu,
-  Database,
   Globe,
   Mail,
-  Network,
   Rocket,
   Shield,
   Sparkles,
-  Zap,
-  Building
+  Zap
 } from 'lucide-react';
 import React, { useState } from 'react';
 import { BentoCard, BentoGrid } from './components/magicui/bento-grid';
-import { NumberInput } from '@mantine/core';
 import { addToWaitlist } from './lib/supabase';
 
 function App() {
