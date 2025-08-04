@@ -56,7 +56,9 @@ const BentoCard = ({
     {...props}
   >
     <div className="relative h-full">
-      {background}
+      <div className="h-full w-full overflow-hidden">
+        {background}
+      </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
     </div>
     <div className="p-6 absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-black/0">

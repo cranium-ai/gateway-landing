@@ -155,24 +155,14 @@ function App() {
 
   const appFeatures = [
     {
-      name: 'AI Gateway Search',
-      description: 'Find and discover AI systems with our powerful search and filtering capabilities.',
-      background: <img src='/screenshots/search.png' />,
-      Icon: Globe,
-      href: '/',
-      cta: 'Learn More',
-      // Make the first box span the first column
-      className: "col-span-1",
-    },
-    {
       name: 'AI System Details',
       description: 'Comprehensive information about each AI system with security and compliance details.',
-      background: <img src='/screenshots/details.png' />,
+      background: <img src='/screenshots/demo.gif' className="w-full h-full" />,
       Icon: Shield,
       href: '/',
       cta: 'Learn More',
       // Make the second box span the second column, so they are side by side
-      className: "col-span-1",
+      className: "col-span-1 h-[500px] lg:h-[1000px]",
     },
   ];
 
@@ -425,7 +415,7 @@ function App() {
               </div>
             ))}
           </div>
-            <BentoGrid className="grid-cols-2 gap-6 mt-12">
+            <BentoGrid className="grid-cols-1 mt-12 max-w-full mx-auto">
             {appFeatures.map((feature) => (
               <BentoCard key={feature.name} {...feature} />
             ))}
@@ -434,7 +424,7 @@ function App() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="pb-20 relative">
+      <section id="faq" className="pb-20 mt-[200px] lg:mt-[700px]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 relative">
