@@ -54,7 +54,7 @@ function App() {
         ai_systems_count: aiSystemsCountNum,
         selected_plan: selectedPlan
       });
-      window.gtag_report_conversion('https://joinaigateway.com/');
+      window.gtag_report_conversion();
       
       setIsSubmitted(true);
     } catch (err: any) {
