@@ -192,6 +192,7 @@ function App() {
             target="_blank" 
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105"
+            aria-label="Cranium AI Gateway"
           >
             <img src="/cranium_logo.svg" alt="Cranium AI" className="h-10" />
           </a>
@@ -199,7 +200,8 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-10 pt-24">
+      <section className="relative overflow-hidden py-10 pt-24" aria-labelledby="hero-heading">
+        <h1 id="hero-heading" className="sr-only">AI Gateway - Secure AI Marketplace for Enterprise</h1>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
 
@@ -385,9 +387,8 @@ function App() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-10 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent"/>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20" aria-labelledby="features-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 relative">
               Built for Enterprise AI Sales
@@ -424,7 +425,7 @@ function App() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="pb-20 mt-[200px] lg:mt-[700px]">
+      <section id="faq" className="pb-20 mt-[200px] lg:mt-[700px]" aria-labelledby="faq-heading">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 relative">
@@ -466,8 +467,7 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-600/5"></div>
+      <section className="relative py-20" aria-labelledby="waitlist-heading">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-5xl font-bold text-white mb-6 animate-fadeInUp">
             Ready to Transform Your AI Sales?
@@ -488,18 +488,25 @@ function App() {
               </span>
             </button>
           </div>
+            <p className="text-gray-400 pt-4">Questions? <a href="mailto:ekim@cranium.ai" className="text-gray-400 hover:text-white transition-colors">Email us</a></p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/60 border-t border-white/5 py-4 backdrop-blur-xl">
+      <footer className="relative py-5 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between animate-fadeInUp">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-sm text-gray-400">
+                &copy; {new Date().getFullYear()} Cranium.ai. All rights reserved.
+              </p>
             </div>
-
-            <div className="text-gray-500 text-center md:text-right">
-              <p>&copy; 2025 Cranium AI. All rights reserved.</p>
+            <div className="flex space-x-6">
+              <a href="mailto:ekim@cranium.ai" className="text-gray-400 hover:text-white transition-colors" aria-label="Contact us by email">
+                <Mail size={20} />
+                <span className="sr-only">Email</span>
+              </a>
+              {/* Other social links */}
             </div>
           </div>
         </div>
