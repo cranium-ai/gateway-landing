@@ -98,7 +98,6 @@ function App() {
       period: 'forever',
       description: 'For startups and individual developers',
       features: [
-        'Free forever',
         'Basic security and compliance features',
         'Generate an AI Bill of Materials'
       ],
